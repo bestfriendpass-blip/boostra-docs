@@ -3,11 +3,11 @@
 #  Методология: Doc-as-Code / DocOps
 # ============================================================================
 
-site_name: Портал документации Boostra
+site_name: Демо-портал документации
 # TODO: заменить ORG/REPO на реальные после создания репозитория на GitHub
 site_url: https://ORG.github.io/REPO/
-site_author: Команда Boostra
-site_description: Внутренний портал технической документации Boostra
+site_author: Автор
+site_description: Учебный портал Doc-as-Code с примером ТЗ (демо-проект «ТаскТрекер»)
 
 # Служебные файлы-включения не собирать как отдельные страницы
 exclude_docs: |
@@ -128,5 +128,8 @@ markdown_extensions:
 nav:
   - Главная: index.md
   - Быстрый старт: getting-started.md
-  - Спецификации:
-      - Покрытие проверкой заявок: specs/2026-07-27-application-flow-coverage-visualization.md
+  - Демо-ТЗ «ТаскТрекер»:
+      - Обзор: tz/index.md
+      - Бэкенд: tz/backend.md
+      - Фронтенд: tz/frontend.md
+      - База данных: tz/database.md

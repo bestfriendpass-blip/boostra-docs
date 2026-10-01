@@ -1,6 +1,6 @@
-# Boostra Documentation Portal
+# Demo Documentation Portal
 
-Welcome to the internal technical documentation portal, built with the **Doc-as-Code** approach: all documentation lives in Markdown files next to the code and is versioned in Git.
+A learning portal built with the **Doc-as-Code** approach: all documentation lives in Markdown files, is previewed locally, and is published automatically. All content is fictional sample data.
 
 [Getting started](getting-started.md){ .md-button .md-button--primary }
 
