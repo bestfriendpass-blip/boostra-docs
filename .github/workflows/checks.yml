@@ -1,0 +1,37 @@
+name: checks
+
+# Проверки запускаются на каждый Pull Request и на push в main.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Сборка и проверка ссылок
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - name: Установка зависимостей
+        run: pip install -r requirements-docs.txt
+      - name: Строгая сборка (ловит битые ссылки и ошибки структуры)
+        run: mkdocs build --strict
+
+  spellcheck:
+    name: Орфография
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Установка cspell и русского словаря
+        run: npm install -g cspell @cspell/dict-ru_ru
+      - name: Подключение русского словаря
+        run: cspell link add @cspell/dict-ru_ru
+      - name: Проверка орфографии
+        run: cspell "docs/**/*.md" --no-progress

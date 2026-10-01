@@ -6,3 +6,6 @@ site/
 venv*/
 __pycache__/
 *.pyc
+
+# Node (спелл-чекер cspell)
+node_modules/
