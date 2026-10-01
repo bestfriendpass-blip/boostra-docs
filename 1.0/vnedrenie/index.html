@@ -1,0 +1,1141 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Учебный портал Doc-as-Code с примером ТЗ (демо-проект «ТаскТрекер»)">
+      
+      
+        <meta name="author" content="Автор">
+      
+      
+        <link rel="canonical" href="https://bestfriendpass-blip.github.io/boostra-docs/1.0/vnedrenie/">
+      
+      
+        <link rel="prev" href="../tz/database/">
+      
+      
+      
+        
+          <link rel="alternate" href="../" hreflang="ru">
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Методика и внедрение - Демо-портал документации</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-as-code-mkdocs-vs-confluence" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  Вы просматриваете устаревшую версию документации.
+  Перейдите к <a href="../.."><strong>актуальной версии</strong></a>.
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Демо-портал документации" class="md-header__button md-logo" aria-label="Демо-портал документации" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Демо-портал документации
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Методика и внедрение
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключиться на тёмную тему"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключиться на тёмную тему" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключиться на светлую тему"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключиться на светлую тему" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Поделиться" aria-label="Поделиться" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Быстрый старт
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tz/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Демо-ТЗ «ТаскТрекер»
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Методика и внедрение
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Распечатать в PDF
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Демо-портал документации" class="md-nav__button md-logo" aria-label="Демо-портал документации" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Демо-портал документации
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Быстрый старт
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../tz/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Демо-ТЗ «ТаскТрекер»
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Демо-ТЗ «ТаскТрекер»
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tz/backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэкенд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tz/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Фронтенд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tz/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База данных
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Методика и внедрение
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Распечатать в PDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-as-code-mkdocs-vs-confluence"><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> (<abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr>) vs Confluence: обоснование и руководство по внедрению<a class="headerlink" href="#doc-as-code-mkdocs-vs-confluence" title="Permanent link">&para;</a></h1>
+<p>Документ состоит из трёх частей:</p>
+<ol>
+<li><strong>Сравнение</strong> <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> и Confluence — чтобы принять решение.</li>
+<li><strong>Организация процесса</strong> — как это работает на уровне компании.</li>
+<li><strong>Пошаговая настройка</strong> — чтобы любой сотрудник мог развернуть у себя.</li>
+</ol>
+<hr />
+<h1 id="1-doc-as-code-confluence">Часть 1. Сравнение <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> и Confluence<a class="headerlink" href="#1-doc-as-code-confluence" title="Permanent link">&para;</a></h1>
+<h2 id="_1">Суть различия<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Confluence</strong> — корпоративная вики: открыл в браузере, пишешь как в Word, все видят. Сильна в широте охвата и низком пороге входа.</li>
+<li><strong><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr></strong> — «документация как код»: текст в формате Markdown хранится в Git, проходит ревью через Pull Request и публикуется автоматически. Сильна в версионировании, качестве и связи с кодом.</li>
+</ul>
+<p>Главный тезис: <strong>это не «что лучше вообще», а «что лучше под конкретную задачу».</strong></p>
+<h2 id="_2">Таблица сравнения<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> (<abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr>)</th>
+<th>Confluence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Порог входа</td>
+<td>Нужны Git, Markdown, редактор ⚠️</td>
+<td>Открыл браузер и пишешь ✅</td>
+</tr>
+<tr>
+<td>Визуальный редактор (WYSIWYG)</td>
+<td>Нет, пишешь разметку ⚠️</td>
+<td>Да, мышкой ✅</td>
+</tr>
+<tr>
+<td>Версионирование</td>
+<td>Полная история в Git, привязка к релизу ✅</td>
+<td>История страниц, но не к коду ⚠️</td>
+</tr>
+<tr>
+<td>Ревью перед публикацией</td>
+<td>Да, Pull Request + обязательные проверки ✅</td>
+<td>Нет реального «гейта» ⚠️</td>
+</tr>
+<tr>
+<td>Авто-проверки (орфография, битые ссылки)</td>
+<td>Да, в CI ✅</td>
+<td>Нет ⚠️</td>
+</tr>
+<tr>
+<td>Связь с кодом</td>
+<td><abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> лежит рядом с кодом ✅</td>
+<td>Отдельная система ⚠️</td>
+</tr>
+<tr>
+<td>Совместное онлайн-редактирование</td>
+<td>Через ветки/PR, не одновременно ⚠️</td>
+<td>Да, как Google Docs ✅</td>
+</tr>
+<tr>
+<td>Комментарии от нетехнических людей</td>
+<td>Только через GitHub ⚠️</td>
+<td>Доступны всем ✅</td>
+</tr>
+<tr>
+<td>Аудит «кто/что/когда менял»</td>
+<td>Неизменяемая история Git ✅✅</td>
+<td>Есть, но проще обойти ⚠️</td>
+</tr>
+<tr>
+<td>Стоимость</td>
+<td>Open source, бесплатно ✅</td>
+<td>Лицензия на пользователя 💰</td>
+</tr>
+<tr>
+<td>Вендор-локин</td>
+<td>Нет (обычный текст) ✅</td>
+<td>Проприетарный формат ⚠️</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">По трём осям<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. Удобство в работе<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Для <strong>технических специалистов</strong> (аналитики, разработчики, кто уже в Git) — <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> удобнее: один инструмент, один процесс, пишешь в своём редакторе.</li>
+<li>Для <strong>нетехнических сотрудников</strong> (юристы, менеджмент, комплаенс) — Confluence удобнее: не надо учить Git.</li>
+<li><strong>Актуальность</strong>: <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> выигрывает — ревью и авто-проверки не дают документации «протухнуть» или сломаться. В Confluence со временем накапливаются мёртвые и устаревшие страницы.</li>
+</ul>
+<h3 id="2-doc-as-code">2. Передача в разработку — самая сильная сторона <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr><a class="headerlink" href="#2-doc-as-code" title="Permanent link">&para;</a></h3>
+<ul>
+<li><abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> лежит <strong>в том же репозитории, что и код</strong>, и версионируется вместе с релизом.</li>
+<li>Разработчик видит изменения <abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> в том же diff/Pull Request, что и код.</li>
+<li>Нет проблемы «<abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> в Confluence разъехалось с реальным кодом».</li>
+<li>Диаграммы (Mermaid) — тоже код, меняются вместе с текстом, а не отдельными картинками, которые кто-то забыл обновить.</li>
+</ul>
+<h3 id="3">3. Удобство для бизнеса<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Если «бизнес» = менеджмент/заказчики, которым <strong>читать и комментировать</strong>, — Confluence привычнее и доступнее.</li>
+<li>Реальные плюсы <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> для бизнеса: <strong>дешевле</strong> (нет лицензий), <strong>выше качество и актуальность</strong>, и особенно для МФО — <strong>железный аудит изменений</strong>: неизменяемая история, кто и когда что поправил. Для регуляторной документации прозрачность и доказуемость изменений — серьёзный аргумент.</li>
+<li>Минусы: нужно обучить людей и держать человека, кто поддерживает CI; часть нетехнических сотрудников будет сопротивляться.</li>
+</ul>
+<h2 id="_4">Вывод<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><strong>Не «заменить Confluence», а использовать правильный инструмент под задачу:</strong></p>
+<ul>
+<li><strong>Техническая документация</strong> (<abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr>, API, архитектура, runbooks, схемы БД) — в <strong><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr></strong> рядом с кодом. Здесь он заметно лучше.</li>
+<li><strong>Общекорпоративная вики</strong> (встречи, политики, HR) — остаётся в <strong>Confluence</strong>.</li>
+</ul>
+<p>Самый жизнеспособный вариант внедрения — <strong>гибрид</strong>, а не «всё переносим». Это снижает сопротивление и риск. Существуют интеграции «публикация Markdown → Confluence»: исходник живёт в Git с ревью, а бизнес читает привычную витрину в Confluence.</p>
+<hr />
+<h1 id="2">Часть 2. Как это организовать в компании<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<h2 id="_5">Что где хранится<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Тип документа</th>
+<th>Где</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr>, API, архитектура, схемы БД, runbooks</td>
+<td><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> (Git + <abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr>)</td>
+</tr>
+<tr>
+<td>Протоколы встреч, политики, HR, общие вики-страницы</td>
+<td>Confluence</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">Роли в процессе<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Автор</strong> — пишет/правит документацию в Markdown, открывает Pull Request.</li>
+<li><strong>Ревьюер</strong> — читает изменения, комментирует по строкам, одобряет.</li>
+<li><strong>Мейнтейнер портала</strong> — следит за CI, структурой, настройками (1 человек на команду).</li>
+</ul>
+<h2 id="_7">Жизненный цикл документа<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Автор создаёт ветку
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        ▼
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Правит .md, смотрит локально (mkdocs serve)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        ▼
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Коммит + push + Pull Request
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        ▼
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Авто-проверки: орфография + сборка + битые ссылки
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        ▼
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Ревьюер смотрит и одобряет
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        ▼
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Merge в main
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        ▼
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Авто-деплой → сайт обновился (GitHub Pages)
+</span></code></pre></div>
+<h2 id="_8">Правила и соглашения (рекомендуемые)<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Прямой push в <code>main</code> запрещён</strong> — только через Pull Request (настраивается защитой ветки).</li>
+<li><strong>Обязательные проверки</strong> перед merge: орфография (<code>spellcheck</code>) и сборка (<code>build</code>).</li>
+<li><strong>Именование веток</strong>: <code>docs/&lt;короткое-описание&gt;</code> (например <code>docs/api-platezhi</code>).</li>
+<li><strong>Один PR — одно логическое изменение</strong>: так проще ревьюить.</li>
+<li><strong>Словарь терминов</strong> компании ведётся в <code>.cspell/project-words.txt</code> — туда добавляются «не-опечатки» (названия систем, термины).</li>
+<li><strong>Структура репозитория</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docs/           — страницы документации (.md)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docs/includes/  — служебные включения (глоссарий)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>overrides/      — кастомизация темы
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>mkdocs.yml      — конфигурация портала и навигация
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>.github/workflows/ — авто-проверки и авто-деплой
+</span></code></pre></div></li>
+</ul>
+<h2 id="_9">Что нужно от компании<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Репозиторий</strong> на GitHub (или GitLab/самохост) — один на портал документации.</li>
+<li><strong>Права доступа</strong>: команда — на запись через PR; мейнтейнер — админ.</li>
+<li><strong>Площадка публикации</strong>: GitHub Pages (приватный сайт — платный план; публичный — бесплатно) или внутренний хостинг статики.</li>
+<li><strong>Обучение</strong>: 1–2 часа на сотрудника по этому руководству.</li>
+<li><strong>Поддержка</strong>: мейнтейнер, который отвечает за CI и структуру.</li>
+</ul>
+<h2 id="_10">Как это работает на компанию (итог)<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Портал настраивается <strong>один раз</strong> мейнтейнером.</li>
+<li>Каждый сотрудник <strong>единожды</strong> ставит инструменты у себя (Часть 3).</li>
+<li>Дальше любой правит документацию, открывает PR, проходит авто-проверки и ревью.</li>
+<li>После merge сайт обновляется сам — у всех всегда актуальная версия по одной ссылке.</li>
+</ol>
+<hr />
+<h1 id="3-windows">Часть 3. Пошаговая настройка для сотрудника (Windows)<a class="headerlink" href="#3-windows" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Это ровно тот путь, который проверен на практике, со всеми граблями и обходами.
+Делается <strong>один раз</strong>. Дальше — только работа через Pull Request.</p>
+</blockquote>
+<h2 id="_11">Предварительно<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Аккаунт на <strong>GitHub</strong> (если нет — зарегистрироваться на github.com).</li>
+<li>Доступ (приглашение) в <strong>репозиторий документации</strong> компании.</li>
+</ul>
+<h2 id="1-python">Шаг 1. Установить Python<a class="headerlink" href="#1-python" title="Permanent link">&para;</a></h2>
+<p>Скачать с <a href="https://www.python.org/downloads/">python.org</a> и при установке <strong>поставить галочку «Add Python to PATH»</strong>.
+Проверка в терминале:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python --version
+</span></code></pre></div></p>
+<h2 id="2-mkdocs">Шаг 2. Установить <abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr> и плагины<a class="headerlink" href="#2-mkdocs" title="Permanent link">&para;</a></h2>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip install mkdocs mkdocs-material mike mkdocs-print-site-plugin
+</span></code></pre></div>
+Проверка:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdocs --version
+</span></code></pre></div></p>
+<h2 id="3_1">Шаг 3. Установить редактор и расширения<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Редактор: <strong>VS Code</strong> или <strong>Cursor</strong>.</li>
+<li>Расширения (панель Extensions, <code>Ctrl+Shift+X</code>):</li>
+<li><strong>Markdown Preview Mermaid Support</strong> — чтобы диаграммы рисовались в предпросмотре.</li>
+<li><strong>GitHub Pull Requests</strong> — работа с PR внутри редактора (по возможности).</li>
+<li>(в репозитории эти расширения уже рекомендованы через <code>.vscode/extensions.json</code> — редактор предложит их сам).</li>
+</ul>
+<h2 id="4">Шаг 4. Получить проект<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>Клонировать репозиторий документации компании:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git clone https://github.com/КОМПАНИЯ/РЕПОЗИТОРИЙ.git
+</span></code></pre></div>
+Открыть папку в редакторе (File → Open Folder).</p>
+<h2 id="5">Шаг 5. Локальный предпросмотр<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>В терминале редактора, находясь в папке проекта:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mkdocs serve
+</span></code></pre></div>
+Команда напечатает адрес вида <code>Serving on http://127.0.0.1:8000/</code> — открыть его в браузере.
+Правишь <code>.md</code>, сохраняешь (<code>Ctrl+S</code>) — сайт обновляется сам.</p>
+<p><strong>Предпросмотр «документ слева — результат справа» в редакторе:</strong>
+открыть <code>.md</code> → <code>Ctrl+K</code>, затем <code>V</code>. С расширением Mermaid там же рисуются диаграммы.
+(Полный вид со всеми фишками <abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr> — только в браузере через <code>mkdocs serve</code>.)</p>
+<h2 id="6-github-cli">Шаг 6. Установить GitHub CLI и войти<a class="headerlink" href="#6-github-cli" title="Permanent link">&para;</a></h2>
+<p>Установка:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>winget install --id GitHub.cli -e
+</span></code></pre></div>
+После установки <strong>перезапустить терминал</strong> (а лучше весь редактор), чтобы команда <code>gh</code> стала видна.</p>
+<p>Вход:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gh auth login
+</span></code></pre></div>
+Выбрать: <code>GitHub.com</code> → <code>HTTPS</code> → <code>Yes</code> → <code>Login with a web browser</code>.</p>
+<h3 id="connection-closed">⚠️ Если вход через браузер не проходит (таймаут / «connection closed»)<a class="headerlink" href="#connection-closed" title="Permanent link">&para;</a></h3>
+<p>В некоторых сетях эндпоинт входа через браузер режется. Обход — <strong>вход по токену</strong>:</p>
+<ol>
+<li>Создать токен: открыть
+   <code>https://github.com/settings/tokens/new?scopes=repo,read:org,workflow</code>
+   — отметить scopes <strong><code>repo</code></strong>, <strong><code>read:org</code></strong>, <strong><code>workflow</code></strong> → Generate token → скопировать <code>ghp_...</code>.</li>
+<li>Войти токеном (PowerShell):
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>"ghp_ВАШ_ТОКЕН" | gh auth login --with-token
+</span></code></pre></div></li>
+<li>Проверить:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh auth status
+</span></code></pre></div></li>
+</ol>
+<p>Настроить git на работу через gh (один раз):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gh auth setup-git
+</span></code></pre></div></p>
+<h2 id="7-pull-request">Шаг 7. Рабочий цикл — внесение правки через Pull Request<a class="headerlink" href="#7-pull-request" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a># 1. Новая ветка от main
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>git checkout main
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>git pull
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>git checkout -b docs/moya-pravka
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a># 2. (правишь .md в редакторе, смотришь через mkdocs serve)
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a># 3. Зафиксировать
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>git add .
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>git commit -m "Коротко: что поменял"
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a># 4. Запушить ветку
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>git push -u origin docs/moya-pravka
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a># 5. Открыть Pull Request
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>gh pr create --fill
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a># 6. Посмотреть статус проверок
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>gh pr checks
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a># 7. После зелёных проверок и одобрения — смержить
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>gh pr merge --squash --delete-branch
+</span></code></pre></div>
+<p>То же самое кнопками в редакторе: ветка и коммит — в панели <strong>Source Control</strong> (<code>Ctrl+Shift+G</code>), PR — в панели <strong>GitHub Pull Requests</strong>.
+Либо всё через сайт github.com (кнопки «Compare &amp; pull request» и «Merge»).</p>
+<p>После merge сайт пересобирается и обновляется <strong>автоматически</strong> за ~30 секунд.</p>
+<h2 id="8">Шаг 8. Как добавить новую страницу<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Создать файл, например <code>docs/razdel/statya.md</code>.</li>
+<li>Прописать его в навигации в <code>mkdocs.yml</code>:
+   <div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">nav</span><span class="p">:</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Раздел</span><span class="p">:</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Статья</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">razdel/statya.md</span>
+</span></code></pre></div></li>
+<li>Проверить локально (<code>mkdocs serve</code>) и отправить через Pull Request (Шаг 7).</li>
+</ol>
+<h2 id="9">Шаг 9. Как устроена публикация (для понимания)<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>При merge в <code>main</code> запускается GitHub Actions (<code>.github/workflows/ci.yml</code>), который собирает сайт и публикует его (через <code>mike</code>) на GitHub Pages.</li>
+<li>Отдельный workflow (<code>.github/workflows/checks.yml</code>) на каждый PR проверяет орфографию и сборку.</li>
+<li>Ничего публиковать руками не нужно — всё делает CI.</li>
+</ul>
+<h2 id="10-maintenance">Шаг 10. Проверки против устаревания (maintenance)<a class="headerlink" href="#10-maintenance" title="Permanent link">&para;</a></h2>
+<p>Помимо обязательных проверок на PR (<code>build</code>, <code>spellcheck</code>), в портале настроены вспомогательные проверки обслуживания (<code>.github/workflows/maintenance.yml</code>). Они запускаются на PR и <strong>по расписанию</strong> (раз в неделю):</p>
+<ul>
+<li><strong>Проверка внешних ссылок</strong> (<code>lychee</code>) — находит «мёртвые» внешние ссылки, которые ломаются со временем. Настройка исключений — в <code>lychee.toml</code>. По умолчанию проверка в режиме отчёта (не блокирует merge); чтобы сделать её блокирующей, в workflow поставить <code>fail: true</code>.</li>
+<li><strong>Проверка дат пересмотра</strong> (<code>scripts/check_freshness.py</code>) — смотрит поле <code>last_reviewed</code> в начале каждой страницы и подсвечивает те, что не пересматривались дольше порога (по умолчанию 180 дней) или вовсе без даты. Это сигнал «страницу пора перечитать», а не ошибка.</li>
+</ul>
+<p>Чтобы отметить страницу как пересмотренную, добавь в самое начало файла:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nn">---</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">last_reviewed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026-10-01</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nn">---</span>
+</span></code></pre></div>
+<blockquote>
+<p>Важно: автоматика ловит «сломалось» (битые ссылки/структура) железно, а «устарело по смыслу» — делает заметным (просроченные даты, мёртвые ссылки), но не читает смысл. Финальную актуальность подтверждает человек при пересмотре.</p>
+</blockquote>
+<hr />
+<h2 id="_12">Приложение. Типовые проблемы и решения<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Проблема</th>
+<th>Причина</th>
+<th>Решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code> не работает в терминале</td>
+<td>Это Windows PowerShell, а не Bash</td>
+<td>Разделять команды <code>;</code> или запускать по одной</td>
+</tr>
+<tr>
+<td><code>gh : имя не распознано</code></td>
+<td>PATH не обновился после установки</td>
+<td>Перезапустить редактор полностью; или запускать по полному пути <code>&amp; "C:\Program Files\GitHub CLI\gh.exe" ...</code></td>
+</tr>
+<tr>
+<td><code>gh auth login</code> виснет/timeout</td>
+<td>Провайдер режет OAuth-вход</td>
+<td>Вход по токену (Шаг 6, обход)</td>
+</tr>
+<tr>
+<td><code>missing required scope 'read:org'</code></td>
+<td>У токена не хватает прав</td>
+<td>Пересоздать токен со scopes <code>repo, read:org, workflow</code></td>
+</tr>
+<tr>
+<td>Порт 8000 занят</td>
+<td>Уже запущен другой <code>mkdocs serve</code></td>
+<td>Остановить старый (<code>Ctrl+C</code>) или запустить на другом порту: <code>mkdocs serve -a 127.0.0.1:8001</code></td>
+</tr>
+<tr>
+<td>В адресе появляется лишний <code>/REPO/</code></td>
+<td>Задан <code>site_url</code> с под-путём</td>
+<td>Для локальной работы это норма; важно для публикации на GitHub Pages</td>
+</tr>
+<tr>
+<td>Диаграммы не рисуются в предпросмотре редактора</td>
+<td>Нет расширения</td>
+<td>Поставить «Markdown Preview Mermaid Support»</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.select", "content.code.annotate", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+    
+  </body>
+</html>

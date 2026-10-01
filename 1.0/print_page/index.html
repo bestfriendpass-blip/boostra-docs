@@ -330,6 +330,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../vnedrenie/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Методика и внедрение
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="./" class="md-tabs__link">
         
   
@@ -601,6 +620,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../vnedrenie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Методика и внедрение
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
@@ -737,6 +783,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#vnedrenie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Методика и внедрение
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -849,6 +906,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vnedrenie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Методика и внедрение
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1522,7 +1590,367 @@
 <li>Поле <code>status</code> ограничено значениями: <code>новая</code>, <code>в работе</code>, <code>на проверке</code>, <code>готово</code>.</li>
 <li>Email приводится к нижнему регистру перед сохранением.</li>
 </ul>
-</div></section></section></div><style>.print-site-enumerate-headings #index > h1:before { content: '1 ' }
+</div></section></section><section class="print-page" id="vnedrenie" heading-number="4"><h1 id="vnedrenie-doc-as-code-mkdocs-vs-confluence"><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> (<abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr>) vs Confluence: обоснование и руководство по внедрению<a class="headerlink" href="#vnedrenie-doc-as-code-mkdocs-vs-confluence" title="Permanent link">&para;</a></h1>
+<p>Документ состоит из трёх частей:</p>
+<ol>
+<li><strong>Сравнение</strong> <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> и Confluence — чтобы принять решение.</li>
+<li><strong>Организация процесса</strong> — как это работает на уровне компании.</li>
+<li><strong>Пошаговая настройка</strong> — чтобы любой сотрудник мог развернуть у себя.</li>
+</ol>
+<hr />
+<h1 id="vnedrenie-1-doc-as-code-confluence">Часть 1. Сравнение <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> и Confluence<a class="headerlink" href="#vnedrenie-1-doc-as-code-confluence" title="Permanent link">&para;</a></h1>
+<h2 id="vnedrenie-_1">Суть различия<a class="headerlink" href="#vnedrenie-_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Confluence</strong> — корпоративная вики: открыл в браузере, пишешь как в Word, все видят. Сильна в широте охвата и низком пороге входа.</li>
+<li><strong><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr></strong> — «документация как код»: текст в формате Markdown хранится в Git, проходит ревью через Pull Request и публикуется автоматически. Сильна в версионировании, качестве и связи с кодом.</li>
+</ul>
+<p>Главный тезис: <strong>это не «что лучше вообще», а «что лучше под конкретную задачу».</strong></p>
+<h2 id="vnedrenie-_2">Таблица сравнения<a class="headerlink" href="#vnedrenie-_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> (<abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr>)</th>
+<th>Confluence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Порог входа</td>
+<td>Нужны Git, Markdown, редактор ⚠️</td>
+<td>Открыл браузер и пишешь ✅</td>
+</tr>
+<tr>
+<td>Визуальный редактор (WYSIWYG)</td>
+<td>Нет, пишешь разметку ⚠️</td>
+<td>Да, мышкой ✅</td>
+</tr>
+<tr>
+<td>Версионирование</td>
+<td>Полная история в Git, привязка к релизу ✅</td>
+<td>История страниц, но не к коду ⚠️</td>
+</tr>
+<tr>
+<td>Ревью перед публикацией</td>
+<td>Да, Pull Request + обязательные проверки ✅</td>
+<td>Нет реального «гейта» ⚠️</td>
+</tr>
+<tr>
+<td>Авто-проверки (орфография, битые ссылки)</td>
+<td>Да, в CI ✅</td>
+<td>Нет ⚠️</td>
+</tr>
+<tr>
+<td>Связь с кодом</td>
+<td><abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> лежит рядом с кодом ✅</td>
+<td>Отдельная система ⚠️</td>
+</tr>
+<tr>
+<td>Совместное онлайн-редактирование</td>
+<td>Через ветки/PR, не одновременно ⚠️</td>
+<td>Да, как Google Docs ✅</td>
+</tr>
+<tr>
+<td>Комментарии от нетехнических людей</td>
+<td>Только через GitHub ⚠️</td>
+<td>Доступны всем ✅</td>
+</tr>
+<tr>
+<td>Аудит «кто/что/когда менял»</td>
+<td>Неизменяемая история Git ✅✅</td>
+<td>Есть, но проще обойти ⚠️</td>
+</tr>
+<tr>
+<td>Стоимость</td>
+<td>Open source, бесплатно ✅</td>
+<td>Лицензия на пользователя 💰</td>
+</tr>
+<tr>
+<td>Вендор-локин</td>
+<td>Нет (обычный текст) ✅</td>
+<td>Проприетарный формат ⚠️</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vnedrenie-_3">По трём осям<a class="headerlink" href="#vnedrenie-_3" title="Permanent link">&para;</a></h2>
+<h3 id="vnedrenie-1">1. Удобство в работе<a class="headerlink" href="#vnedrenie-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Для <strong>технических специалистов</strong> (аналитики, разработчики, кто уже в Git) — <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> удобнее: один инструмент, один процесс, пишешь в своём редакторе.</li>
+<li>Для <strong>нетехнических сотрудников</strong> (юристы, менеджмент, комплаенс) — Confluence удобнее: не надо учить Git.</li>
+<li><strong>Актуальность</strong>: <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> выигрывает — ревью и авто-проверки не дают документации «протухнуть» или сломаться. В Confluence со временем накапливаются мёртвые и устаревшие страницы.</li>
+</ul>
+<h3 id="vnedrenie-2-doc-as-code">2. Передача в разработку — самая сильная сторона <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr><a class="headerlink" href="#vnedrenie-2-doc-as-code" title="Permanent link">&para;</a></h3>
+<ul>
+<li><abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> лежит <strong>в том же репозитории, что и код</strong>, и версионируется вместе с релизом.</li>
+<li>Разработчик видит изменения <abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> в том же diff/Pull Request, что и код.</li>
+<li>Нет проблемы «<abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr> в Confluence разъехалось с реальным кодом».</li>
+<li>Диаграммы (Mermaid) — тоже код, меняются вместе с текстом, а не отдельными картинками, которые кто-то забыл обновить.</li>
+</ul>
+<hvnedrenie-3 id="vnedrenie-3">3. Удобство для бизнеса<a class="headerlink" href="#vnedrenie-3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Если «бизнес» = менеджмент/заказчики, которым <strong>читать и комментировать</strong>, — Confluence привычнее и доступнее.</li>
+<li>Реальные плюсы <abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> для бизнеса: <strong>дешевле</strong> (нет лицензий), <strong>выше качество и актуальность</strong>, и особенно для МФО — <strong>железный аудит изменений</strong>: неизменяемая история, кто и когда что поправил. Для регуляторной документации прозрачность и доказуемость изменений — серьёзный аргумент.</li>
+<li>Минусы: нужно обучить людей и держать человека, кто поддерживает CI; часть нетехнических сотрудников будет сопротивляться.</li>
+</ul>
+<h2 id="vnedrenie-_4">Вывод<a class="headerlink" href="#vnedrenie-_4" title="Permanent link">&para;</a></h2>
+<p><strong>Не «заменить Confluence», а использовать правильный инструмент под задачу:</strong></p>
+<ul>
+<li><strong>Техническая документация</strong> (<abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr>, API, архитектура, runbooks, схемы БД) — в <strong><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr></strong> рядом с кодом. Здесь он заметно лучше.</li>
+<li><strong>Общекорпоративная вики</strong> (встречи, политики, HR) — остаётся в <strong>Confluence</strong>.</li>
+</ul>
+<p>Самый жизнеспособный вариант внедрения — <strong>гибрид</strong>, а не «всё переносим». Это снижает сопротивление и риск. Существуют интеграции «публикация Markdown → Confluence»: исходник живёт в Git с ревью, а бизнес читает привычную витрину в Confluence.</p>
+<hr />
+<h1 id="vnedrenie-2">Часть 2. Как это организовать в компании<a class="headerlink" href="#vnedrenie-2" title="Permanent link">&para;</a></h1>
+<h2 id="vnedrenie-_5">Что где хранится<a class="headerlink" href="#vnedrenie-_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Тип документа</th>
+<th>Где</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><abbr title="Техническое задание — документ с требованиями к системе.">ТЗ</abbr>, API, архитектура, схемы БД, runbooks</td>
+<td><abbr title="Методология ведения документации в текстовых файлах с версионированием в Git.">Doc-as-Code</abbr> (Git + <abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr>)</td>
+</tr>
+<tr>
+<td>Протоколы встреч, политики, HR, общие вики-страницы</td>
+<td>Confluence</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vnedrenie-_6">Роли в процессе<a class="headerlink" href="#vnedrenie-_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Автор</strong> — пишет/правит документацию в Markdown, открывает Pull Request.</li>
+<li><strong>Ревьюер</strong> — читает изменения, комментирует по строкам, одобряет.</li>
+<li><strong>Мейнтейнер портала</strong> — следит за CI, структурой, настройками (1 человек на команду).</li>
+</ul>
+<h2 id="vnedrenie-_7">Жизненный цикл документа<a class="headerlink" href="#vnedrenie-_7" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#vnedrenie-__codelineno-0-1"></a>Автор создаёт ветку
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#vnedrenie-__codelineno-0-2"></a>        │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#vnedrenie-__codelineno-0-3"></a>        ▼
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#vnedrenie-__codelineno-0-4"></a>Правит .md, смотрит локально (mkdocs serve)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#vnedrenie-__codelineno-0-5"></a>        │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#vnedrenie-__codelineno-0-6"></a>        ▼
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#vnedrenie-__codelineno-0-7"></a>Коммит + push + Pull Request
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#vnedrenie-__codelineno-0-8"></a>        │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#vnedrenie-__codelineno-0-9"></a>        ▼
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#vnedrenie-__codelineno-0-10"></a>Авто-проверки: орфография + сборка + битые ссылки
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#vnedrenie-__codelineno-0-11"></a>        │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#vnedrenie-__codelineno-0-12"></a>        ▼
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#vnedrenie-__codelineno-0-13"></a>Ревьюер смотрит и одобряет
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#vnedrenie-__codelineno-0-14"></a>        │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#vnedrenie-__codelineno-0-15"></a>        ▼
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#vnedrenie-__codelineno-0-16"></a>Merge в main
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#vnedrenie-__codelineno-0-17"></a>        │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#vnedrenie-__codelineno-0-18"></a>        ▼
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#vnedrenie-__codelineno-0-19"></a>Авто-деплой → сайт обновился (GitHub Pages)
+</span></code></pre></div>
+<h2 id="vnedrenie-_8">Правила и соглашения (рекомендуемые)<a class="headerlink" href="#vnedrenie-_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Прямой push в <code>main</code> запрещён</strong> — только через Pull Request (настраивается защитой ветки).</li>
+<li><strong>Обязательные проверки</strong> перед merge: орфография (<code>spellcheck</code>) и сборка (<code>build</code>).</li>
+<li><strong>Именование веток</strong>: <code>docs/&lt;короткое-описание&gt;</code> (например <code>docs/api-platezhi</code>).</li>
+<li><strong>Один PR — одно логическое изменение</strong>: так проще ревьюить.</li>
+<li><strong>Словарь терминов</strong> компании ведётся в <code>.cspell/project-words.txt</code> — туда добавляются «не-опечатки» (названия систем, термины).</li>
+<li><strong>Структура репозитория</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#vnedrenie-__codelineno-1-1"></a>docs/           — страницы документации (.md)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#vnedrenie-__codelineno-1-2"></a>docs/includes/  — служебные включения (глоссарий)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#vnedrenie-__codelineno-1-3"></a>overrides/      — кастомизация темы
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#vnedrenie-__codelineno-1-4"></a>mkdocs.yml      — конфигурация портала и навигация
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#vnedrenie-__codelineno-1-5"></a>.github/workflows/ — авто-проверки и авто-деплой
+</span></code></pre></div></li>
+</ul>
+<h2 id="vnedrenie-_9">Что нужно от компании<a class="headerlink" href="#vnedrenie-_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Репозиторий</strong> на GitHub (или GitLab/самохост) — один на портал документации.</li>
+<li><strong>Права доступа</strong>: команда — на запись через PR; мейнтейнер — админ.</li>
+<li><strong>Площадка публикации</strong>: GitHub Pages (приватный сайт — платный план; публичный — бесплатно) или внутренний хостинг статики.</li>
+<li><strong>Обучение</strong>: 1–2 часа на сотрудника по этому руководству.</li>
+<li><strong>Поддержка</strong>: мейнтейнер, который отвечает за CI и структуру.</li>
+</ul>
+<h2 id="vnedrenie-_10">Как это работает на компанию (итог)<a class="headerlink" href="#vnedrenie-_10" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Портал настраивается <strong>один раз</strong> мейнтейнером.</li>
+<li>Каждый сотрудник <strong>единожды</strong> ставит инструменты у себя (Часть 3).</li>
+<li>Дальше любой правит документацию, открывает PR, проходит авто-проверки и ревью.</li>
+<li>После merge сайт обновляется сам — у всех всегда актуальная версия по одной ссылке.</li>
+</ol>
+<hr />
+<h1 id="vnedrenie-3-windows">Часть 3. Пошаговая настройка для сотрудника (Windows)<a class="headerlink" href="#vnedrenie-3-windows" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Это ровно тот путь, который проверен на практике, со всеми граблями и обходами.
+Делается <strong>один раз</strong>. Дальше — только работа через Pull Request.</p>
+</blockquote>
+<h2 id="vnedrenie-_11">Предварительно<a class="headerlink" href="#vnedrenie-_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Аккаунт на <strong>GitHub</strong> (если нет — зарегистрироваться на github.com).</li>
+<li>Доступ (приглашение) в <strong>репозиторий документации</strong> компании.</li>
+</ul>
+<h2 id="vnedrenie-1-python">Шаг 1. Установить Python<a class="headerlink" href="#vnedrenie-1-python" title="Permanent link">&para;</a></h2>
+<p>Скачать с <a href="https://www.python.org/downloads/">python.org</a> и при установке <strong>поставить галочку «Add Python to PATH»</strong>.
+Проверка в терминале:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#vnedrenie-__codelineno-2-1"></a>python --version
+</span></code></pre></div></p>
+<h2 id="vnedrenie-2-mkdocs">Шаг 2. Установить <abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr> и плагины<a class="headerlink" href="#vnedrenie-2-mkdocs" title="Permanent link">&para;</a></h2>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#vnedrenie-__codelineno-3-1"></a>pip install mkdocs mkdocs-material mike mkdocs-print-site-plugin
+</span></code></pre></div>
+Проверка:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#vnedrenie-__codelineno-4-1"></a>mkdocs --version
+</span></code></pre></div></p>
+<h2 id="vnedrenie-3_1">Шаг 3. Установить редактор и расширения<a class="headerlink" href="#vnedrenie-3_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Редактор: <strong>VS Code</strong> или <strong>Cursor</strong>.</li>
+<li>Расширения (панель Extensions, <code>Ctrl+Shift+X</code>):</li>
+<li><strong>Markdown Preview Mermaid Support</strong> — чтобы диаграммы рисовались в предпросмотре.</li>
+<li><strong>GitHub Pull Requests</strong> — работа с PR внутри редактора (по возможности).</li>
+<li>(в репозитории эти расширения уже рекомендованы через <code>.vscode/extensions.json</code> — редактор предложит их сам).</li>
+</ul>
+<h2 id="vnedrenie-4">Шаг 4. Получить проект<a class="headerlink" href="#vnedrenie-4" title="Permanent link">&para;</a></h2>
+<p>Клонировать репозиторий документации компании:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#vnedrenie-__codelineno-5-1"></a>git clone https://github.com/КОМПАНИЯ/РЕПОЗИТОРИЙ.git
+</span></code></pre></div>
+Открыть папку в редакторе (File → Open Folder).</p>
+<h2 id="vnedrenie-5">Шаг 5. Локальный предпросмотр<a class="headerlink" href="#vnedrenie-5" title="Permanent link">&para;</a></h2>
+<p>В терминале редактора, находясь в папке проекта:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#vnedrenie-__codelineno-6-1"></a>mkdocs serve
+</span></code></pre></div>
+Команда напечатает адрес вида <code>Serving on http://127.0.0.1:8000/</code> — открыть его в браузере.
+Правишь <code>.md</code>, сохраняешь (<code>Ctrl+S</code>) — сайт обновляется сам.</p>
+<p><strong>Предпросмотр «документ слева — результат справа» в редакторе:</strong>
+открыть <code>.md</code> → <code>Ctrl+K</code>, затем <code>V</code>. С расширением Mermaid там же рисуются диаграммы.
+(Полный вид со всеми фишками <abbr title="Генератор статических сайтов на языке Python.">MkDocs</abbr> — только в браузере через <code>mkdocs serve</code>.)</p>
+<h2 id="vnedrenie-6-github-cli">Шаг 6. Установить GitHub CLI и войти<a class="headerlink" href="#vnedrenie-6-github-cli" title="Permanent link">&para;</a></h2>
+<p>Установка:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#vnedrenie-__codelineno-7-1"></a>winget install --id GitHub.cli -e
+</span></code></pre></div>
+После установки <strong>перезапустить терминал</strong> (а лучше весь редактор), чтобы команда <code>gh</code> стала видна.</p>
+<p>Вход:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#vnedrenie-__codelineno-8-1"></a>gh auth login
+</span></code></pre></div>
+Выбрать: <code>GitHub.com</code> → <code>HTTPS</code> → <code>Yes</code> → <code>Login with a web browser</code>.</p>
+<h3 id="vnedrenie-connection-closed">⚠️ Если вход через браузер не проходит (таймаут / «connection closed»)<a class="headerlink" href="#vnedrenie-connection-closed" title="Permanent link">&para;</a></h3>
+<p>В некоторых сетях эндпоинт входа через браузер режется. Обход — <strong>вход по токену</strong>:</p>
+<ol>
+<li>Создать токен: открыть
+   <code>https://github.com/settings/tokens/new?scopes=repo,read:org,workflow</code>
+   — отметить scopes <strong><code>repo</code></strong>, <strong><code>read:org</code></strong>, <strong><code>workflow</code></strong> → Generate token → скопировать <code>ghp_...</code>.</li>
+<li>Войти токеном (PowerShell):
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#vnedrenie-__codelineno-9-1"></a>"ghp_ВАШ_ТОКЕН" | gh auth login --with-token
+</span></code></pre></div></li>
+<li>Проверить:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#vnedrenie-__codelineno-10-1"></a>gh auth status
+</span></code></pre></div></li>
+</ol>
+<p>Настроить git на работу через gh (один раз):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#vnedrenie-__codelineno-11-1"></a>gh auth setup-git
+</span></code></pre></div></p>
+<h2 id="vnedrenie-7-pull-request">Шаг 7. Рабочий цикл — внесение правки через Pull Request<a class="headerlink" href="#vnedrenie-7-pull-request" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#vnedrenie-__codelineno-12-1"></a># 1. Новая ветка от main
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#vnedrenie-__codelineno-12-2"></a>git checkout main
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#vnedrenie-__codelineno-12-3"></a>git pull
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#vnedrenie-__codelineno-12-4"></a>git checkout -b docs/moya-pravka
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#vnedrenie-__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#vnedrenie-__codelineno-12-6"></a># 2. (правишь .md в редакторе, смотришь через mkdocs serve)
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#vnedrenie-__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#vnedrenie-__codelineno-12-8"></a># 3. Зафиксировать
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#vnedrenie-__codelineno-12-9"></a>git add .
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#vnedrenie-__codelineno-12-10"></a>git commit -m "Коротко: что поменял"
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#vnedrenie-__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#vnedrenie-__codelineno-12-12"></a># 4. Запушить ветку
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#vnedrenie-__codelineno-12-13"></a>git push -u origin docs/moya-pravka
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#vnedrenie-__codelineno-12-14"></a>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#vnedrenie-__codelineno-12-15"></a># 5. Открыть Pull Request
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#vnedrenie-__codelineno-12-16"></a>gh pr create --fill
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#vnedrenie-__codelineno-12-17"></a>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#vnedrenie-__codelineno-12-18"></a># 6. Посмотреть статус проверок
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#vnedrenie-__codelineno-12-19"></a>gh pr checks
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#vnedrenie-__codelineno-12-20"></a>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#vnedrenie-__codelineno-12-21"></a># 7. После зелёных проверок и одобрения — смержить
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#vnedrenie-__codelineno-12-22"></a>gh pr merge --squash --delete-branch
+</span></code></pre></div>
+<p>То же самое кнопками в редакторе: ветка и коммит — в панели <strong>Source Control</strong> (<code>Ctrl+Shift+G</code>), PR — в панели <strong>GitHub Pull Requests</strong>.
+Либо всё через сайт github.com (кнопки «Compare &amp; pull request» и «Merge»).</p>
+<p>После merge сайт пересобирается и обновляется <strong>автоматически</strong> за ~30 секунд.</p>
+<h2 id="vnedrenie-8">Шаг 8. Как добавить новую страницу<a class="headerlink" href="#vnedrenie-8" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Создать файл, например <code>docs/razdel/statya.md</code>.</li>
+<li>Прописать его в навигации в <code>mkdocs.yml</code>:
+   <div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#vnedrenie-__codelineno-13-1"></a><span class="nt">nav</span><span class="p">:</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#vnedrenie-__codelineno-13-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Раздел</span><span class="p">:</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#vnedrenie-__codelineno-13-3"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Статья</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">razdel/statya.md</span>
+</span></code></pre></div></li>
+<li>Проверить локально (<code>mkdocs serve</code>) и отправить через Pull Request (Шаг 7).</li>
+</ol>
+<h2 id="vnedrenie-9">Шаг 9. Как устроена публикация (для понимания)<a class="headerlink" href="#vnedrenie-9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>При merge в <code>main</code> запускается GitHub Actions (<code>.github/workflows/ci.yml</code>), который собирает сайт и публикует его (через <code>mike</code>) на GitHub Pages.</li>
+<li>Отдельный workflow (<code>.github/workflows/checks.yml</code>) на каждый PR проверяет орфографию и сборку.</li>
+<li>Ничего публиковать руками не нужно — всё делает CI.</li>
+</ul>
+<h2 id="vnedrenie-10-maintenance">Шаг 10. Проверки против устаревания (maintenance)<a class="headerlink" href="#vnedrenie-10-maintenance" title="Permanent link">&para;</a></h2>
+<p>Помимо обязательных проверок на PR (<code>build</code>, <code>spellcheck</code>), в портале настроены вспомогательные проверки обслуживания (<code>.github/workflows/maintenance.yml</code>). Они запускаются на PR и <strong>по расписанию</strong> (раз в неделю):</p>
+<ul>
+<li><strong>Проверка внешних ссылок</strong> (<code>lychee</code>) — находит «мёртвые» внешние ссылки, которые ломаются со временем. Настройка исключений — в <code>lychee.toml</code>. По умолчанию проверка в режиме отчёта (не блокирует merge); чтобы сделать её блокирующей, в workflow поставить <code>fail: true</code>.</li>
+<li><strong>Проверка дат пересмотра</strong> (<code>scripts/check_freshness.py</code>) — смотрит поле <code>last_reviewed</code> в начале каждой страницы и подсвечивает те, что не пересматривались дольше порога (по умолчанию 180 дней) или вовсе без даты. Это сигнал «страницу пора перечитать», а не ошибка.</li>
+</ul>
+<p>Чтобы отметить страницу как пересмотренную, добавь в самое начало файла:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#vnedrenie-__codelineno-14-1"></a><span class="nn">---</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#vnedrenie-__codelineno-14-2"></a><span class="nt">last_reviewed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026-10-01</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#vnedrenie-__codelineno-14-3"></a><span class="nn">---</span>
+</span></code></pre></div>
+<blockquote>
+<p>Важно: автоматика ловит «сломалось» (битые ссылки/структура) железно, а «устарело по смыслу» — делает заметным (просроченные даты, мёртвые ссылки), но не читает смысл. Финальную актуальность подтверждает человек при пересмотре.</p>
+</blockquote>
+<hr />
+<h2 id="vnedrenie-_12">Приложение. Типовые проблемы и решения<a class="headerlink" href="#vnedrenie-_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Проблема</th>
+<th>Причина</th>
+<th>Решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code> не работает в терминале</td>
+<td>Это Windows PowerShell, а не Bash</td>
+<td>Разделять команды <code>;</code> или запускать по одной</td>
+</tr>
+<tr>
+<td><code>gh : имя не распознано</code></td>
+<td>PATH не обновился после установки</td>
+<td>Перезапустить редактор полностью; или запускать по полному пути <code>&amp; "C:\Program Files\GitHub CLI\gh.exe" ...</code></td>
+</tr>
+<tr>
+<td><code>gh auth login</code> виснет/timeout</td>
+<td>Провайдер режет OAuth-вход</td>
+<td>Вход по токену (Шаг 6, обход)</td>
+</tr>
+<tr>
+<td><code>missing required scope 'read:org'</code></td>
+<td>У токена не хватает прав</td>
+<td>Пересоздать токен со scopes <code>repo, read:org, workflow</code></td>
+</tr>
+<tr>
+<td>Порт 8000 занят</td>
+<td>Уже запущен другой <code>mkdocs serve</code></td>
+<td>Остановить старый (<code>Ctrl+C</code>) или запустить на другом порту: <code>mkdocs serve -a 127.0.0.1:8001</code></td>
+</tr>
+<tr>
+<td>В адресе появляется лишний <code>/REPO/</code></td>
+<td>Задан <code>site_url</code> с под-путём</td>
+<td>Для локальной работы это норма; важно для публикации на GitHub Pages</td>
+</tr>
+<tr>
+<td>Диаграммы не рисуются в предпросмотре редактора</td>
+<td>Нет расширения</td>
+<td>Поставить «Markdown Preview Mermaid Support»</td>
+</tr>
+</tbody>
+</table></section></div><style>.print-site-enumerate-headings #index > h1:before { content: '1 ' }
 
                 .print-site-enumerate-headings #index h2:before { content: '1.' counter(counter-index-2) ' ' }
                 .print-site-enumerate-headings #index h2 {  counter-reset: counter-index-3 ;  counter-increment: counter-index-2 }
@@ -1558,6 +1986,14 @@
 
                 .print-site-enumerate-headings #tz-database h2:before { content: '3.4.' counter(counter-tz-database-2) ' ' }
                 .print-site-enumerate-headings #tz-database h2 {  counter-increment: counter-tz-database-2 }
+            
+.print-site-enumerate-headings #vnedrenie > h1:before { content: '4 ' }
+
+                .print-site-enumerate-headings #vnedrenie h2:before { content: '4.' counter(counter-vnedrenie-2) ' ' }
+                .print-site-enumerate-headings #vnedrenie h2 {  counter-reset: counter-vnedrenie-3 ;  counter-increment: counter-vnedrenie-2 }
+            
+                .print-site-enumerate-headings #vnedrenie h3:before { content: '4.' counter(counter-vnedrenie-2) '.' counter(counter-vnedrenie-3) ' ' }
+                .print-site-enumerate-headings #vnedrenie h3 {  counter-increment: counter-vnedrenie-3 }
             </style>
 
 
