@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Сборка и проверка ссылок
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
         run: mkdocs build --strict
 
   spellcheck:
-    name: Орфография
+    name: spellcheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
