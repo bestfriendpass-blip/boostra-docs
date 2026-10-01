@@ -1,0 +1,59 @@
+name: docs-reminder
+
+# Бот-напоминание: если в PR меняли код/настройки, но не трогали документацию
+# в папке docs/, бот оставит напоминающий комментарий. Это подсказка человеку,
+# а не ошибка — merge он не блокирует.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Сравнить изменения кода и документации
+        id: check
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
+          changed="$(git diff --name-only "$base" "$head")"
+          echo "Изменённые файлы в PR:"
+          echo "$changed"
+          # Что считаем "кодом/настройками, влияющими на поведение".
+          # В РЕАЛЬНОМ проекте укажите здесь свои папки кода: src/, app/, backend/, frontend/ ...
+          code="$(echo "$changed" | grep -E '^(src/|app/|backend/|frontend/|mkdocs\.yml|scripts/|overrides/)' || true)"
+          docs="$(echo "$changed" | grep -E '^docs/' || true)"
+          if [ -n "$code" ] && [ -z "$docs" ]; then
+            echo "remind=true"  >> "$GITHUB_OUTPUT"
+          else
+            echo "remind=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Оставить напоминание в PR
+        if: steps.check.outputs.remind == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- docs-reminder -->';
+            const body = marker + '\n' +
+              '⚠️ **Напоминание про документацию**\n\n' +
+              'В этом Pull Request менялись код/настройки, но файлы в `docs/` не обновлялись.\n' +
+              'Проверьте, не нужно ли поправить ТЗ или документацию под внесённые изменения.\n\n' +
+              '_Если документация не требует правок — просто проигнорируйте это сообщение._';
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.rest.issues.listComments({ owner, repo, issue_number });
+            const existing = comments.data.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
