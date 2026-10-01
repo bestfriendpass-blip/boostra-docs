@@ -1,0 +1,35 @@
+name: maintenance
+
+# Вспомогательные проверки против устаревания документации.
+# Запускаются на Pull Request, по расписанию (еженедельно) и вручную.
+# Это предупреждающие проверки — они не блокируют merge.
+on:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"   # каждый понедельник в 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  links:
+    name: links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Проверка внешних ссылок (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: "--config lychee.toml --no-progress ./docs/**/*.md"
+          fail: false            # поставить true, чтобы битые ссылки блокировали merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  freshness:
+    name: freshness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - name: Проверка дат пересмотра страниц
+        run: python scripts/check_freshness.py

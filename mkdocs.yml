@@ -132,3 +132,4 @@ nav:
       - Бэкенд: tz/backend.md
       - Фронтенд: tz/frontend.md
       - База данных: tz/database.md
+  - Методика и внедрение: vnedrenie.md
