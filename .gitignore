@@ -1,0 +1,8 @@
+# MkDocs
+site/
+.cache/
+
+# Python
+venv*/
+__pycache__/
+*.pyc

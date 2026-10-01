@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-material
+mike
+mkdocs-print-site-plugin
+# Опционально (авто-PDF, требует системные GTK/Pango):
+# mkdocs-with-pdf

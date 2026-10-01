@@ -1,0 +1,132 @@
+# ============================================================================
+#  Портал технической документации Boostra  (MkDocs + Material for MkDocs)
+#  Методология: Doc-as-Code / DocOps
+# ============================================================================
+
+site_name: Портал документации Boostra
+# TODO: заменить ORG/REPO на реальные после создания репозитория на GitHub
+site_url: https://ORG.github.io/REPO/
+site_author: Команда Boostra
+site_description: Внутренний портал технической документации Boostra
+
+# Служебные файлы-включения не собирать как отдельные страницы
+exclude_docs: |
+  includes/
+
+# Английские страницы доступны через переключатель языка, а не через меню
+not_in_nav: |
+  /en/
+
+# --- Тема --------------------------------------------------------------------
+theme:
+  name: material
+  custom_dir: overrides
+  language: ru
+  palette:
+    # Светлая тема
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Переключиться на тёмную тему
+    # Тёмная тема
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Переключиться на светлую тему
+
+  features:
+    - navigation.instant        # Мгновенная загрузка страниц без перезагрузки
+    - navigation.tracking       # Отслеживание якорей в URL
+    - navigation.tabs           # Верхние вкладки навигации
+    - navigation.sections       # Разделы в боковом меню
+    - navigation.top            # Кнопка "Наверх"
+    - navigation.indexes        # Страница-индекс для разделов
+    - toc.follow                # Подсветка пункта содержания при скролле
+    - search.suggest            # Всплывающие подсказки в поиске
+    - search.highlight          # Подсветка найденных слов
+    - search.share              # Кнопка "поделиться результатами поиска"
+    - content.code.copy         # Кнопка копирования кода
+    - content.code.select       # Кнопка выделения кода
+    - content.code.annotate     # Всплывающие аннотации в коде
+    - content.tooltips          # Улучшенные всплывающие подсказки (глоссарий)
+
+# --- Переключатель языков и версий ------------------------------------------
+extra:
+  alternate:
+    - name: Русский
+      link: ./
+      lang: ru
+    - name: English
+      link: /en/
+      lang: en
+  version:
+    provider: mike
+
+# --- Плагины -----------------------------------------------------------------
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+  - tags
+  - print-site:
+      add_to_navigation: true
+      print_page_title: 'Распечатать в PDF'
+      add_cover_page: true
+      add_table_of_contents: true
+      toc_title: 'Содержание'
+  # --- Опционально: автогенерация единого PDF при сборке --------------------
+  # Требует библиотеку weasyprint + системные GTK/Pango (на Windows ставится
+  # отдельно: GTK3 Runtime). Без них mkdocs не запустится, поэтому по умолчанию
+  # блок отключён. Экспорт в PDF доступен через меню «Распечатать в PDF» (print-site).
+  # Чтобы включить авто-PDF:
+  #   1) установить GTK: см. https://weasyprint.org/ (Windows: GTK3 runtime)
+  #   2) pip install mkdocs-with-pdf
+  #   3) раскомментировать блок ниже и собирать с ENABLE_PDF=1
+  # - with-pdf:
+  #     enabled_if_env: ENABLE_PDF
+  #     output_path: pdf/document.pdf
+  #     cover_title: Документация Boostra
+  #     cover_subtitle: Технический портал
+  #     toc_title: Содержание
+
+# --- Расширения синтаксиса Markdown -----------------------------------------
+markdown_extensions:
+  - abbr                        # Аббревиатуры (для глоссария)
+  - footnotes                   # Сноски
+  - attr_list                   # Атрибуты элементов (нужно для кнопок .md-button)
+  - md_in_html                  # Markdown внутри HTML-блоков
+  - admonition                  # Блоки-врезки (!!! note / warning / tip)
+  - tables                      # Таблицы
+  - toc:
+      permalink: true           # Якорь-ссылка у заголовков
+  - pymdownx.details            # Сворачиваемые блоки
+  - pymdownx.snippets:
+      auto_append:
+        - docs/includes/glossary.md
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true     # Вкладки с контентом
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# --- Навигация ---------------------------------------------------------------
+nav:
+  - Главная: index.md
+  - Быстрый старт: getting-started.md
+  - Спецификации:
+      - Покрытие проверкой заявок: specs/2026-07-27-application-flow-coverage-visualization.md
